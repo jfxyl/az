@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'PRC',
 
     /*
     |--------------------------------------------------------------------------
@@ -159,7 +159,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Dingo\Api\Provider\LaravelServiceProvider::class
+
+        Dingo\Api\Provider\LaravelServiceProvider::class,
+        App\Providers\EasySmsServiceProvider::class,
     ],
 
     /*
