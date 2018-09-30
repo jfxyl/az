@@ -13,9 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 
 $api = app('Dingo\Api\Routing\Router');
@@ -46,5 +43,9 @@ $api->version('v1', [
         
     });
     
+    // 抓取数据写入，过滤并推送
     $api->post('article','ArticleController@store');
+
+    // 客户端请求咨询接口
+    $api->post('articles','ArticleController@articles');
 });

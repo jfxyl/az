@@ -15,15 +15,17 @@ class ArticlePush implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $article;
+    protected $user;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($article)
+    public function __construct($article,$user = null)
     {
+        $article->content = str_limit($article->content,60,'...');
         $this->article = $article->toArray();
-        dump($this->article);
+        if($user) $this->user = $user;
     }
 
     public function broadcastAs()
@@ -38,7 +40,12 @@ class ArticlePush implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['ChannelArticlePush'];
+        if($this->user){
+            return ['ChannelArticlePush_'.$this->user->id];
+        }else{
+            return ['ChannelArticlePush'];
+        }
+        
     }
 
     // public function broadcastOn()

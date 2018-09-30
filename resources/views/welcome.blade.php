@@ -29,7 +29,7 @@
     forceTLS: true
     });
 
-    var channel = pusher.subscribe('ChannelArticlePush');
+    var channel = pusher.subscribe('ChannelArticlePush_10');
     channel.bind('EventArticlePush', function(data) {
         console.log(data)
     });
